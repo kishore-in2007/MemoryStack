@@ -1,0 +1,1 @@
+import {useMemo} from 'react';import {useStore} from '../store/useStore';export function useRevisionQueue(){const revisions=useStore(s=>s.revisions);return useMemo(()=>{const today=new Date().toISOString().slice(0,10);return revisions.filter(x=>x.status!=='completed'&&x.due_date<=today).sort((a,b)=>a.due_date.localeCompare(b.due_date))},[revisions])}

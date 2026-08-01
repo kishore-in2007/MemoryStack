@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Memory Stack",
-    "slug": "memory-stack-app",
+    "slug": "memory-stack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,6 +12,7 @@
     },
     "android": {
       "package": "com.memorystack.app",
+      "permissions": ["RECEIVE_BOOT_COMPLETED", "VIBRATE", "POST_NOTIFICATIONS"],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,15 +25,20 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-notifications",
+      "expo-router",
+      ["expo-notifications", { "color": "#6C4EF5" }],
       [
         "expo-build-properties",
         {
           "android": {
-            "minSdkVersion": 29
+            "minSdkVersion": 29,
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36
           }
         }
-      ]
-    ]
+      ],
+      "expo-router"
+    ],
+    "scheme": "memorystack"
   }
 }

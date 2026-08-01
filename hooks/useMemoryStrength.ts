@@ -1,0 +1,1 @@
+import {useMemo} from 'react';import {useStore} from '../store/useStore';export function useMemoryStrength(){const strengths=useStore(s=>s.strengths);return useMemo(()=>strengths.length?strengths.reduce((a,x)=>a+x.strength_score,0)/strengths.length:0,[strengths])}
