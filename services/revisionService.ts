@@ -135,9 +135,9 @@ export function buildLocalPracticeProblem(revisionId: string): PracticeProblem {
         { input: 'nums = [3, 2, 4], target = 6', output: '[1, 2]', explanation: 'nums[1] + nums[2] == 6' },
       ],
       starterCode: {
-        python: 'class Solution:\n    def findTargetPair(self, nums: list[int], target: int) -> list[int]:\n        # Write your solution here\n        seen = {}\n        for i, num in enumerate(nums):\n            diff = target - num\n            if diff in seen:\n                return [seen[diff], i]\n            seen[num] = i\n        return []',
-        cpp: '#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findTargetPair(vector<int>& nums, int target) {\n        // Write your solution here\n        unordered_map<int, int> seen;\n        for (int i = 0; i < nums.size(); ++i) {\n            int diff = target - nums[i];\n            if (seen.count(diff)) return {seen[diff], i};\n            seen[nums[i]] = i;\n        }\n        return {};\n    }\n};',
-        java: 'import java.util.*;\n\nclass Solution {\n    public int[] findTargetPair(int[] nums, int target) {\n        // Write your solution here\n        Map<Integer, Integer> seen = new HashMap<>();\n        for (int i = 0; i < nums.length; i++) {\n            int diff = target - nums[i];\n            if (seen.containsKey(diff)) return new int[]{seen.get(diff), i};\n            seen.put(nums[i], i);\n        }\n        return new int[]{};\n    }\n}',
+        python: 'class Solution:\n    def findTargetPair(self, nums: list[int], target: int) -> list[int]:\n        # Write your code here\n        pass',
+        cpp: '#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> findTargetPair(vector<int>& nums, int target) {\n        // Write your code here\n        \n    }\n};',
+        java: 'import java.util.*;\n\nclass Solution {\n    public int[] findTargetPair(int[] nums, int target) {\n        // Write your code here\n        return new int[]{};\n    }\n}',
       },
       allowedLanguages: ['python', 'cpp', 'java'],
     };
@@ -166,9 +166,9 @@ export function buildLocalPracticeProblem(revisionId: string): PracticeProblem {
         { input: 'numCourses = 2, prerequisites = [[1,0],[0,1]]', output: 'false', explanation: 'A cycle exists.' },
       ],
       starterCode: {
-        python: 'class Solution:\n    def canFinishCourses(self, numCourses: int, prerequisites: list[list[int]]) -> bool:\n        # Write your solution here\n        adj = [[] for _ in range(numCourses)]\n        indegree = [0] * numCourses\n        for dest, src in prerequisites:\n            adj[src].append(dest)\n            indegree[dest] += 1\n        q = [i for i in range(numCourses) if indegree[i] == 0]\n        visited = 0\n        while q:\n            curr = q.pop(0)\n            visited += 1\n            for nxt in adj[curr]:\n                indegree[nxt] -= 1\n                if indegree[nxt] == 0:\n                    q.append(nxt)\n        return visited == numCourses',
-        cpp: '#include <vector>\n#include <queue>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canFinishCourses(int numCourses, vector<vector<int>>& prerequisites) {\n        // Write your solution here\n        return true;\n    }\n};',
-        java: 'import java.util.*;\n\nclass Solution {\n    public boolean canFinishCourses(int numCourses, int[][] prerequisites) {\n        // Write your solution here\n        return true;\n    }\n}',
+        python: 'class Solution:\n    def canFinishCourses(self, numCourses: int, prerequisites: list[list[int]]) -> bool:\n        # Write your code here\n        pass',
+        cpp: '#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool canFinishCourses(int numCourses, vector<vector<int>>& prerequisites) {\n        // Write your code here\n        return false;\n    }\n};',
+        java: 'import java.util.*;\n\nclass Solution {\n    public boolean canFinishCourses(int numCourses, int[][] prerequisites) {\n        // Write your code here\n        return false;\n    }\n}',
       },
       allowedLanguages: ['python', 'cpp', 'java'],
     };
@@ -188,9 +188,9 @@ export function buildLocalPracticeProblem(revisionId: string): PracticeProblem {
       { input: 'Sample input representation', output: 'Expected output representation', explanation: 'Demonstrates base case.' },
     ],
     starterCode: {
-      python: `class Solution:\n    def solve(self, data: list) -> any:\n        # Implement ${problem.topic} (${problem.pattern}) solution\n        return True`,
-      cpp: `class Solution {\npublic:\n    bool solve() {\n        // Implement ${problem.topic} solution\n        return true;\n    }\n};`,
-      java: `class Solution {\n    public boolean solve() {\n        // Implement ${problem.topic} solution\n        return true;\n    }\n}`,
+      python: 'class Solution:\n    def solve(self, nums: list) -> any:\n        # Write your code here\n        pass',
+      cpp: '#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool solve(vector<int>& nums) {\n        // Write your code here\n        return true;\n    }\n};',
+      java: 'import java.util.*;\n\nclass Solution {\n    public boolean solve(int[] nums) {\n        // Write your code here\n        return true;\n    }\n}',
     },
     allowedLanguages: ['python', 'cpp', 'java'],
   };

@@ -72,9 +72,19 @@ export default function Compiler() {
     <ScrollView style={ui.screen} contentContainerStyle={ui.content} keyboardShouldPersistTaps="handled">
       <RevisionProgressHeader step={3} />
       <Text style={ui.title}>{data.title}</Text>
-      <Text style={ui.subtitle}>Drafts are saved on this device.</Text>
-      <LanguageSelector value={language} onChange={setLanguage} />
-      <LightweightCodeEditor value={source} onChange={setSource} />
+      <Text style={ui.subtitle}>Type your solution below and test it.</Text>
+      <LanguageSelector
+        value={language}
+        onChange={l => {
+          setLanguage(l);
+          setSource(data?.starterCode[l] ?? '');
+        }}
+      />
+      <LightweightCodeEditor
+        value={source}
+        onChange={setSource}
+        onReset={() => setSource(data?.starterCode[language] ?? '')}
+      />
       <Button
         outline
         title={busy ? 'Running...' : 'Run sample tests'}
