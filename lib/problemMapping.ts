@@ -1,0 +1,2 @@
+import type {ProblemCatalogItem} from '../types/problem';
+export function mapCatalogRow(x:{id:string;platform:ProblemCatalogItem['platform'];external_id?:string|null;slug:string;title:string;difficulty?:ProblemCatalogItem['difficulty']|null;topics?:string[]|null;url:string}):ProblemCatalogItem{return{id:x.id,platform:x.platform,externalId:x.external_id,slug:x.slug,title:x.title,difficulty:x.difficulty??'Unknown',topics:x.topics??[],url:x.url}}

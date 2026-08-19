@@ -1,0 +1,3 @@
+const DATE_ONLY=/^\d{4}-\d{2}-\d{2}$/;
+export function todayInTimeZone(timeZone=process.env.EXPO_PUBLIC_APP_TIME_ZONE||'Asia/Kolkata'){const parts=new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=(t:Intl.DateTimeFormatPartTypes)=>parts.find(p=>p.type===t)?.value;return `${get('year')}-${get('month')}-${get('day')}`}
+export function isDateOnly(value:string){if(!DATE_ONLY.test(value))return false;const [y,m,d]=value.split('-').map(Number);const date=new Date(Date.UTC(y,m-1,d));return date.getUTCFullYear()===y&&date.getUTCMonth()===m-1&&date.getUTCDate()===d}

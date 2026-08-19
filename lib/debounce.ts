@@ -1,0 +1,1 @@
+export function createDebouncer<T extends unknown[]>(callback:(...args:T)=>void,delay:number){let timer:ReturnType<typeof setTimeout>|undefined;return{invoke:(...args:T)=>{clearTimeout(timer);timer=setTimeout(()=>callback(...args),delay)},cancel:()=>clearTimeout(timer)}}

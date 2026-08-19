@@ -1,0 +1,2 @@
+export type CheckerType='exact'|'trimmed'|'token'|'float_tolerance';
+export function checkOutput(actual:string,expected:string,type:CheckerType,tolerance=1e-6){if(type==='trimmed')return actual.trim()===expected.trim();if(type==='token')return actual.trim().split(/\s+/).join(' ')===expected.trim().split(/\s+/).join(' ');if(type==='float_tolerance'){const a=Number(actual.trim()),e=Number(expected.trim());return Number.isFinite(a)&&Number.isFinite(e)&&Math.abs(a-e)<=tolerance}return actual===expected}

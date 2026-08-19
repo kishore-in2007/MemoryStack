@@ -36,8 +36,7 @@
             "targetSdkVersion": 36
           }
         }
-      ],
-      "expo-router"
+      ]
     ],
     "scheme": "memorystack"
   }
