@@ -1,9 +1,10 @@
 import { invokeEdge } from '../lib/edgeFunctions';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { useStore } from '../store/useStore';
-import type { PracticeProblem, RevisionContext } from '../types/revision';
+import type { PracticeProblem, PreviousSolutionSnapshot, RevisionContext } from '../types/revision';
+import type { SupportedLanguage } from '../types/problem';
 
-function getDemoPreviousSolution(name: string, topic: string, pattern: string) {
+function getDemoPreviousSolution(name: string, topic: string, pattern: string): PreviousSolutionSnapshot {
   if (name.toLowerCase().includes('two sum')) {
     return {
       id: 'snap-two-sum',
@@ -70,7 +71,25 @@ export function buildLocalRevisionContext(revisionId: string): RevisionContext {
     created_at: new Date().toISOString(),
   };
 
-  const prevSolution = getDemoPreviousSolution(problem.name, problem.topic, problem.pattern);
+  let prevSolution: PreviousSolutionSnapshot | null = null;
+
+  if (problem.source_code && problem.source_code.trim()) {
+    prevSolution = {
+      id: `snap-${problem.id}`,
+      language: ((problem.language as SupportedLanguage) || 'python'),
+      sourceCode: problem.source_code,
+      explanation: problem.explanation || `Original solution recorded for ${problem.name}.`,
+      timeComplexity: problem.time_complexity || 'O(n)',
+      spaceComplexity: problem.space_complexity || 'O(1)',
+      score: 100,
+      attempts: 1,
+      createdAt: problem.created_at || new Date().toISOString(),
+    };
+  } else if (problem.id === 'p1' || problem.id === 'p2') {
+    prevSolution = getDemoPreviousSolution(problem.name, problem.topic, problem.pattern);
+  } else {
+    prevSolution = null;
+  }
 
   return {
     revision: {
@@ -91,7 +110,7 @@ export function buildLocalRevisionContext(revisionId: string): RevisionContext {
       subtopic: problem.subtopic,
       pattern: problem.pattern,
       url: problem.url ?? null,
-      userNotes: 'Original solution saved during study.',
+      userNotes: problem.explanation || 'Original solution saved during study.',
     },
     previousSolution: prevSolution,
     practiceProblemId: `practice-${rev.id}`,
